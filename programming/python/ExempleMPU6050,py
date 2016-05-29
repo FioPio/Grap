@@ -1,0 +1,72 @@
+#!/usr/bin/python
+from MPU6050 import MPU6050
+from time import sleep
+from subprocess import call
+temps=0.1 #segons
+correccioz=90.000/69.7694
+filtre=4.0
+margev=1.00
+sensor = MPU6050(0x68)
+anglex=0
+angley=0
+anglez=0
+vx=0
+vy=0
+vz=0
+x=0
+y=0
+z=0
+while True:
+    call("clear")
+    accel_data = sensor.get_accel_data()
+    gyro_data = sensor.get_gyro_data()
+    temp = sensor.get_temp()
+    if accel_data['x']<margev:
+        accel_data['x']=0
+    if accel_data['y']<margev:
+        accel_data['y']=0
+    print("Accelerometre:")
+    print("x: " + str(accel_data['x'])+' m/s2')
+    print("y: " + str(accel_data['y'])+' m/s2')
+    print("z: " + str(accel_data['z'])+' m/s2')
+
+    #velocitats:
+    vx+=accel_data['x']*temps
+    vy+=accel_data['y']*temps
+#    vz+=accel_data['z']*temps
+    print("Velocitats:")
+    print("vx: " + str(vx)+' m/s')
+    print("vy: " + str(vy)+' m/s')
+    print("vz: " + str(vz)+' m/s')
+    
+    #posicio absoluta:
+    x+=vx*temps
+    y+=vy*temps
+    z+=vz*temps
+    
+    print("Pos:")
+    print("x: " + str(x)+' m')
+    print("y: " + str(y)+' m')
+    print("z: " + str(z)+' m')
+    
+    if abs(gyro_data['x'])<filtre:
+        gyro_data['x']=0
+    if abs(gyro_data['y'])<filtre:
+        gyro_data['y']=0
+    if abs(gyro_data['z']+1)<filtre:
+        gyro_data['z']=0
+    print("Giroscopi:")
+    print("x: " + str(gyro_data['x'])+" graus/s")
+    print("y: " + str(gyro_data['y'])+" graus/s")
+    print("z: " + str(gyro_data['z'])+" graus/s")
+    #calcul absolut aprox
+    anglex+=gyro_data["x"]*temps
+    angley+=gyro_data["y"]*temps
+    anglez+=gyro_data["z"]*temps*correccioz
+    print("Angles:")
+    print("x: " + str(anglex)+" graus")
+    print("y: " + str(angley)+" graus")
+    print("z: " + str(anglez)+" graus")
+
+    print("Temp: " + str(temp) + " C")
+    sleep(temps)
