@@ -1,0 +1,49 @@
+use <components.scad>
+$fn=70;
+color([1,1,1])difference()
+{
+  union()
+  {
+    cube([48,28,24]);
+    translate([48,-10])cube([30,48,44]);
+  }
+  translate([4,4,4])servo("g");
+  translate([52,34,4])rotate([0,0,270])servo("g");
+  translate([47.9,-10.5,24])cube([24.1,49,24]);
+  translate([-1,4,4])rotate([90,0,90])
+  {
+    translate([2.5,2.5])cylinder(r=1,h=10);
+    translate([2.5,17.5])cylinder(r=1,h=10);
+    translate([17.5,2.5])cylinder(r=1,h=10);
+    translate([17.5,17.5])cylinder(r=1,h=10);
+  }
+  translate([43,4,4])rotate([90,0,90])
+  {
+    translate([10,3])cylinder(r=1,h=10);
+    translate([3,10])cylinder(r=1,h=10);
+    translate([17,10])cylinder(r=1,h=10);
+  }
+  translate([48,4,4])rotate([90,0,90])
+  {
+    translate([10,3])cylinder(r=3,h=40);
+    translate([3,10])cylinder(r=3,h=40);
+    translate([17,10])cylinder(r=3,h=40);
+  }
+  //eix m4
+  translate([71,14,35])rotate([0,90,0])cylinder(r=2,8);
+   translate([77.6,14,35])rotate([0,90,0])cylinder(r=4.5,8);
+   translate([71.9,14,35])rotate([0,90,0])cylinder(r=3,3);
+   translate([52,-1,4])rotate([90,0,0])
+   {
+     translate([10,3])cylinder(r=1,h=10);
+     translate([3,10])cylinder(r=1,h=10);
+     translate([17,10])cylinder(r=1,h=10);
+   }
+   translate([52,43,4])rotate([90,0,0])
+   {
+     translate([2.5,2.5])cylinder(r=1,h=10);
+    translate([2.5,17.5])cylinder(r=1,h=10);
+    translate([17.5,2.5])cylinder(r=1,h=10);
+    translate([17.5,17.5])cylinder(r=1,h=10);
+   }
+}
