@@ -1,0 +1,15 @@
+[TFG]$ gcc -c mm24.c -o mm24.o
+[TFG]$ gcc -c try.c -o try.o
+[TFG]$ gcc try.o mm24.o -o try
+[TFG]$ ./try
+
+
+[Programes]$ gcc -c IO.c -o IO.o
+[Programes]$ gcc -c MandoBluetooth.c -o MandoBluetooth.o
+[Programes]$ gcc -c esbosmovimentdelrobot.c -o esbosmovimentdelrobot.o[Programes]$ gcc esbosmovimentdelrobot.o IO.o MandoBluetooth.o -o esbosmovimentdelrobot
+
+per petarho:
+gcc -c IO.c -o IO.o ;gcc -c MandoBluetooth.c -o MandoBluetooth.o ;gcc -c esbosmovimentdelrobot.c -o esbosmovimentdelrobot.o
+gcc esbosmovimentdelrobot.o IO.o MandoBluetooth.o -o esbosmovimentdelrobot
+
+
